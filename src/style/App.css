@@ -1,0 +1,218 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: #000;
+  background-color: #fff;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.home_todo {
+  width: 100%;
+  /* border: blue solid 1px; */
+  display: flex;
+  flex-direction: row;
+  padding: 3px;
+}
+
+.find_todo {
+  padding: 3px;
+  width: 85%;
+}
+
+.find_form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.find_form input {
+  width: 84.5%;
+}
+
+.add_todo {
+  padding: 3px 0;
+  width: 15%;
+}
+
+.find_button {
+  width: 15%;
+  height: 100%;
+}
+
+.add_button {
+  width: 100%;
+}
+
+.list_todo,
+.single_todo,
+.form_todo {
+  padding: 3px;
+}
+
+.list_form,
+.single_row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 3px;
+}
+
+.single_row input,
+.single_row textarea {
+  width: 85%;
+  margin-bottom: 3px;
+}
+
+.single_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.single_form input::placeholder,
+.single_form textarea::placeholder {
+  color: black;
+}
+
+.form_input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form_header {
+  /* border: green solid 1px; */
+  background-color: #a5fcf4;
+  border: solid 1px #1d92d6;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  padding: 1vh;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+select,
+input,
+textarea {
+  background-color: #a5fcf4;
+  border: solid 1px #1d92d6;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  padding: 10px;
+  position: relative;
+}
+
+.update_todo,
+.delete_todo {
+  border: solid 1px #1d92d6;
+  text-align: center;
+  padding: 1vh;
+}
+
+label {
+  background-color: #c8faf5;
+  border: #1d92d6 solid 1px;
+  border-radius: 10px;
+  float: left;
+  width: 15%;
+  margin-right: 10px;
+  padding: 10px;
+}
+
+select,
+input[name="task_name"],
+input[type="date"],
+textarea {
+  cursor: pointer;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: transparent;
+  color: transparent;
+  height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+}
+
+button {
+  cursor: pointer;
+  width: 100%;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  background-color: #a5fcf4;
+  border: solid 1px #1d92d6;
+}
+
+span {
+  font-size: 1rem;
+  color: #ff3131;
+  display: none;
+}
+
+.list_row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #21a2ec;
+  color: white;
+  cursor: pointer;
+}
+
+hr {
+  margin: 5px 0;
+}
+
+.table_col {
+  border: #1d92d6 solid 1px;
+  border-radius: 5px;
+  padding: 2px 5px;
+  overflow: hidden;
+}
+
+.table_col:nth-child(1) {
+  width: 5%;
+  text-align: right;
+}
+
+.table_col:nth-child(2) {
+  width: 10%;
+}
+
+.table_col:nth-child(3) {
+  width: 20%;
+}
+
+.table_col:nth-child(4) {
+  width: 41%;
+}
+
+.table_col:nth-child(5),
+.table_col:nth-child(6) {
+  width: 12%;
+  text-align: right;
+}
+
+.button_row {
+  display: flex;
+  justify-content: space-between;
+}
