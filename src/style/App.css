@@ -115,8 +115,9 @@ textarea {
 .update_todo,
 .delete_todo {
   border: solid 1px #1d92d6;
+  border-radius: 10px;
   text-align: center;
-  padding: 1vh;
+  padding: 2vh;
 }
 
 label {

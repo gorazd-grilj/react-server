@@ -26,15 +26,6 @@ const SingleToDo = ({ data, onSubmit }) => {
     }
   };
 
-  const convertDate = (date) => {
-    if (date) {
-      let temp = date.split(".");
-      temp = temp[2] + "/" + temp[1] + "/" + (Number(temp[0]) + 1).toString();
-      temp = new Date(temp);
-      return temp;
-    }
-  };
-
   const onChange = (event) => {
     event.preventDefault();
     setValue({ ...value, [event.target.name]: event.target.value });
@@ -42,16 +33,11 @@ const SingleToDo = ({ data, onSubmit }) => {
 
   const handleUpdate = async (event) => {
     event.preventDefault();
-    const updated = {
-      ...value,
-      date_from: convertDate(value.date_from),
-      date_to: convertDate(value.date_to),
-    };
 
     const response = await fetch("http://localhost:5000/update", {
-      method: "POST",
+      method: "PUT",
       headers: { "Content-Type": "application/JSON" },
-      body: JSON.stringify(updated),
+      body: JSON.stringify(value),
     });
 
     await response.json();
@@ -61,7 +47,7 @@ const SingleToDo = ({ data, onSubmit }) => {
   const handleDelete = async (event) => {
     event.preventDefault();
     const response = await fetch("http://localhost:5000/delete", {
-      method: "POST",
+      method: "DELETE",
       headers: { "Content-Type": "application/JSON" },
       body: JSON.stringify({ _id: value._id }),
     });
