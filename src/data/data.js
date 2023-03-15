@@ -1,8 +1,9 @@
 export const User = [
-  { key: 1, value: "Airton", selected: "selected" },
-  { key: 2, value: "Alain" },
-  { key: 3, value: "Kimi" },
-  { key: 4, value: "Sebastian" },
+  { key: 1, name: "user", value: "izberi" },
+  { key: 2, name: "user", value: "Airton" },
+  { key: 3, name: "user", value: "Alain" },
+  { key: 4, name: "user", value: "Kimi" },
+  { key: 5, name: "user", value: "Sebastian" },
 ];
 
 export const Inputs = [
@@ -51,4 +52,10 @@ export const Inputs = [
     errorMessage: "izberite datum izvedbe",
     required: true,
   },
+];
+
+export const Narejeno = [
+  { key: 1, name: "done", value: "izberi" },
+  { key: 2, name: "done", value: "false" },
+  { key: 3, name: "done", value: "true" },
 ];

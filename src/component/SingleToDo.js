@@ -1,17 +1,27 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { User, Narejeno } from "../data/data.js";
+
+const user = User;
+const narejeno = Narejeno;
 
 const SingleToDo = ({ data, onSubmit }) => {
   const navigate = useNavigate();
 
   const [value, setValue] = useState({
     _id: data._id,
-    name: data.name,
+    user: data.user,
     task_name: data.task_name,
     description: data.description,
     date_from: data.date_from,
     date_to: data.date_to,
+    done: data.done,
   });
+
+  const [inpSel, setInpSel] = useState(false);
+  const [dateFrom, setDateFrom] = useState("text");
+  const [dateTo, setDateTo] = useState("text");
+  const [inpDone, setInpDone] = useState(false);
 
   const HandleSubmit = (event) => {
     event.preventDefault();
@@ -29,10 +39,15 @@ const SingleToDo = ({ data, onSubmit }) => {
   const onChange = (event) => {
     event.preventDefault();
     setValue({ ...value, [event.target.name]: event.target.value });
+    inpSel && setInpSel(!inpSel);
+    inpDone && setInpDone(!inpDone);
+    console.log(`onChange value: ${JSON.stringify(value, null, 2)}`);
   };
 
   const handleUpdate = async (event) => {
     event.preventDefault();
+
+    console.log(`handleUpdate value: ${JSON.stringify(value, null, 2)}`);
 
     const response = await fetch("http://localhost:5000/update", {
       method: "PUT",
@@ -61,18 +76,103 @@ const SingleToDo = ({ data, onSubmit }) => {
     navigate("/redirect");
   };
 
+  const onFocus = (event) => {
+    event.preventDefault();
+    switch (event.target.name) {
+      case "user":
+        setInpSel(true);
+        break;
+      case "date_from":
+        setDateFrom("date");
+        break;
+      case "date_to":
+        setDateTo("date");
+        break;
+      case "done":
+        setInpDone(true);
+        break;
+
+      default:
+        break;
+    }
+  };
+
+  const InputUser = () => {
+    return (
+      <div className="single_row">
+        <label className="single_label">izvajalec</label>
+        <input
+          type="text"
+          name="user"
+          placeholder={value.user}
+          onChange={onChange}
+          onFocus={onFocus}
+        />
+      </div>
+    );
+  };
+
+  const SelectUser = () => {
+    return (
+      <div className="single_row">
+        <label>izvajalec</label>
+        <select
+          name="user"
+          title="izberi"
+          key="user"
+          onChange={onChange}
+          onFocus={onFocus}
+        >
+          {user.map((u) => (
+            <option value={u.value} key={u.key} title={u.key}>
+              {u.value}
+            </option>
+          ))}
+        </select>
+      </div>
+    );
+  };
+
+  const InputDone = () => {
+    return (
+      <div className="single_row">
+        <label className="single_label">narejeno</label>
+        <input
+          type="boolean"
+          name="done"
+          placeholder={value.done.toString()}
+          onChange={onChange}
+          onFocus={onFocus}
+        />
+      </div>
+    );
+  };
+
+  const SelectDone = () => {
+    return (
+      <div className="single_row">
+        <label>narejeno</label>
+        <select
+          name="done"
+          title="izberi"
+          key="done"
+          onChange={onChange}
+          onFocus={onFocus}
+        >
+          {narejeno.map((n) => (
+            <option value={n.value} key={n.key} title={n.key}>
+              {n.value}
+            </option>
+          ))}
+        </select>
+      </div>
+    );
+  };
+
   return (
     <div className="single_todo">
       <form className="single_form" onSubmit={HandleSubmit}>
-        <div className="single_row">
-          <label className="single_label">name</label>
-          <input
-            type="text"
-            name="name"
-            placeholder={data.name}
-            onChange={onChange}
-          />
-        </div>
+        {!inpSel ? <InputUser /> : <SelectUser />}
 
         <div className="single_row">
           <label className="single_label">task name</label>
@@ -96,22 +196,26 @@ const SingleToDo = ({ data, onSubmit }) => {
         <div className="single_row">
           <label className="single_label">datum from</label>
           <input
-            type="text"
+            type={dateFrom}
             name="date_from"
             placeholder={formatDate(data.date_from)}
             onChange={onChange}
+            onFocus={onFocus}
           />
         </div>
 
         <div className="single_row">
           <label className="single_label">datum to</label>
           <input
-            type="text"
+            type={dateTo}
             name="date_to"
             placeholder={formatDate(data.date_to)}
             onChange={onChange}
+            onFocus={onFocus}
           />
         </div>
+
+        {!inpDone ? <InputDone /> : <SelectDone />}
         <hr />
         <div className="button_row">
           <button onClick={handleUpdate}>update</button>

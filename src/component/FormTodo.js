@@ -5,10 +5,11 @@ import FormInput from "./FormInput.js";
 
 import "../style/App.css";
 
-import { User, Inputs } from "../data/data.js";
+import { User, Inputs, Narejeno } from "../data/data.js";
 
 const user = User;
 const inputs = Inputs;
+const narejeno = Narejeno;
 
 const FormTodo = () => {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ const FormTodo = () => {
     description: "",
     date_from: "",
     date_to: "",
+    done: "false",
   });
 
   const HandleSubmit = async (event) => {
@@ -63,6 +65,15 @@ const FormTodo = () => {
             onChange={onChange}
           />
         ))}
+
+        <label>narejeno</label>
+        <select name="done" title="izberi" key="done" onChange={onChange}>
+          {narejeno.map((n) => (
+            <option value={n.value} key={n.key} title={n.key}>
+              {n.value}
+            </option>
+          ))}
+        </select>
 
         <div className="button_row">
           <button>save to do</button>

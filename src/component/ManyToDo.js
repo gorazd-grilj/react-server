@@ -48,13 +48,29 @@ const ManyToDo = ({ data, onSubmit }) => {
           >
             {n + 1}
           </button>
-          <div className="table_col">{row.name}</div>
-          <div className="table_col">{row.task_name}</div>
-          <div className="table_col">{row.description}</div>
-          <div className="table_col table_right">
-            {formatDate(row.date_from)}
+          <div className="table_col">
+            {row.done ? <strike>{row.name}</strike> : row.name}
           </div>
-          <div className="table_col table_right">{formatDate(row.date_to)}</div>
+          <div className="table_col">
+            {row.done ? <strike>{row.task_name}</strike> : row.task_name}
+          </div>
+          <div className="table_col">
+            {row.done ? <strike>{row.description}</strike> : row.description}
+          </div>
+          <div className="table_col table_right">
+            {row.done ? (
+              <strike>{formatDate(row.date_from)}</strike>
+            ) : (
+              formatDate(row.date_from)
+            )}
+          </div>
+          <div className="table_col table_right">
+            {row.done ? (
+              <strike>{formatDate(row.date_to)}</strike>
+            ) : (
+              formatDate(row.date_to)
+            )}
+          </div>
         </form>
       ))}
       <div className="button_row">

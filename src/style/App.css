@@ -65,6 +65,7 @@
   margin-bottom: 3px;
 }
 
+.single_row select,
 .single_row input,
 .single_row textarea {
   width: 85%;
@@ -114,7 +115,6 @@ textarea {
 
 .update_todo,
 .delete_todo {
-  border: solid 1px #1d92d6;
   border-radius: 10px;
   text-align: center;
   padding: 2vh;
@@ -196,15 +196,15 @@ hr {
 }
 
 .table_col:nth-child(2) {
-  width: 10%;
+  width: 15%;
 }
 
 .table_col:nth-child(3) {
-  width: 20%;
+  width: 15%;
 }
 
 .table_col:nth-child(4) {
-  width: 41%;
+  width: 39%;
 }
 
 .table_col:nth-child(5),
